@@ -38,7 +38,13 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
     compile group: 'cz.jirutka.spring', name: 'embedmongo-spring', version: '1.3.1'
     compile 'org.webjars:bootstrap:3.3.7-1'
-    compileOnly('org.projectlombok:lombok')
+
+    //LOMBOK Dependencies
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('io.projectreactor:reactor-test')
 }
