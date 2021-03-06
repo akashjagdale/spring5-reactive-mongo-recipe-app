@@ -37,7 +37,6 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Mono<IngredientCommand> findByRecipeIdAndIngredientId(String recipeId, String ingredientId) {
-
         return recipeReactiveRepository
                 .findById(recipeId)
                 .flatMapIterable(Recipe::getIngredients)

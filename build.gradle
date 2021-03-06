@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.0.RELEASE'
+        springBootVersion = '2.2.2.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -30,9 +30,9 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
-    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 //	compile('org.springframework.boot:spring-boot-starter-web')
-    compile('org.springframework.boot:spring-boot-starter-webflux')
+    compile ('org.springframework.boot:spring-boot-starter-webflux')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     runtime('org.springframework.boot:spring-boot-devtools')
     compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
     compile('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
@@ -41,7 +41,6 @@ dependencies {
     compileOnly('org.projectlombok:lombok')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('io.projectreactor:reactor-test')
-
 }
 
 //export test coverage

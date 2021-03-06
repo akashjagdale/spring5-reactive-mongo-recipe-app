@@ -32,13 +32,17 @@ public class Recipe {
 
     private Set<Category> categories = new HashSet<>();
 
+    public Recipe() {
+
+    }
+
     public void setNotes(Notes notes) {
         if (notes != null) {
             this.notes = notes;
         }
     }
 
-    public Recipe addIngredient(Ingredient ingredient){
+    public Recipe addIngredient(Ingredient ingredient) {
         this.ingredients.add(ingredient);
         return this;
     }
