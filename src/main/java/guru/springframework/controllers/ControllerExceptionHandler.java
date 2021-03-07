@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.thymeleaf.exceptions.TemplateInputException;
+import org.springframework.web.bind.support.WebExchangeBindException;
 
 /**
  * Created by jt on 7/14/17.
@@ -16,7 +16,7 @@ import org.thymeleaf.exceptions.TemplateInputException;
 public class ControllerExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({NumberFormatException.class, TemplateInputException.class})
+    @ExceptionHandler(WebExchangeBindException.class)
     public String handleNumberFormat(Exception exception, Model model) {
 
         log.error("Handling Number Format Exception");
@@ -25,6 +25,6 @@ public class ControllerExceptionHandler {
 
         model.addAttribute("exception", exception);
 
-        return "404error";
+        return "400error";
     }
 }
