@@ -41,7 +41,6 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Mono<RecipeCommand> findCommandById(String id) {
-
         return recipeReactiveRepository.findById(id)
                 .map(r -> {
                     RecipeCommand rc = recipeToRecipeCommand.convert(r);
@@ -60,9 +59,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Mono<Void> deleteById(String idToDelete) {
-
         recipeReactiveRepository.deleteById(idToDelete).block();
-
         return Mono.empty();
     }
 }

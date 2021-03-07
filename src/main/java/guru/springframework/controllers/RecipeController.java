@@ -52,10 +52,6 @@ public class RecipeController {
     public String updateRecipe(@PathVariable String id, Model model) {
         log.error("Inside recipe update :: " + id);
         Mono<RecipeCommand> recipe = recipeService.findCommandById(id);
-        log.error("recipereciperecipe  :: " + recipe.subscribe(r -> {
-            log.error("Got recipe Id :: " + r.getId());
-
-        }));
         model.addAttribute("recipe", recipe);
         log.error(String.valueOf(model.asMap()));
 
@@ -76,8 +72,11 @@ public class RecipeController {
             return RECIPE_RECIPEFORM_URL;
         }
 
-        RecipeCommand savedCommand = recipeService.saveRecipeCommand(command).block();
+        RecipeCommand savedCommand = recipeService.saveRecipeCommand(command).toProcessor().block();
+        return "redirect:/recipe/" + savedCommand.getId() + "/show";
+    }
 
+    public String redirectToPage(RecipeCommand savedCommand) {
         return "redirect:/recipe/" + savedCommand.getId() + "/show";
     }
 

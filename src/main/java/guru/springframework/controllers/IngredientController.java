@@ -59,11 +59,12 @@ public class IngredientController {
     public String newRecipe(@PathVariable String recipeId, Model model) {
 
         //make sure we have a good id value
-        RecipeCommand recipeCommand = recipeService.findCommandById(recipeId).block();
+        RecipeCommand recipeCommand = recipeService.findCommandById(recipeId).toProcessor().block();
         //todo raise exception if null
 
         //need to return back parent id for hidden form property
         IngredientCommand ingredientCommand = new IngredientCommand();
+        ingredientCommand.setRecipeId(recipeCommand.getId());
         model.addAttribute("ingredient", ingredientCommand);
 
         //init uom
@@ -97,7 +98,7 @@ public class IngredientController {
             return "recipe/ingredient/ingredientform";
         }
 
-        IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command).block();
+        IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command).toProcessor().block();
 
         log.debug("saved ingredient id:" + savedCommand.getId());
 
